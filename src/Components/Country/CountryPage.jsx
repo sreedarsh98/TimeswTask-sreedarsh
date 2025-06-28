@@ -11,6 +11,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Footer from "../Footer";
 import "./CountryPage.css";
+import img1 from "../../assets/img1.jpg"
+import img2 from "../../assets/img2.jpg"
+import img3 from "../../assets/img3.jpg"
+
+
 
 const filters = ["All", "Asia", "Europe"];
 
@@ -68,9 +73,9 @@ const CountryPage = () => {
               modules={[Pagination, Navigation]}
               className="mySwiper"
             >
-              <SwiperSlide>Slide 1</SwiperSlide>
-              <SwiperSlide>Slide 2</SwiperSlide>
-              <SwiperSlide>Slide 3</SwiperSlide>
+              <SwiperSlide><img src={img2} /></SwiperSlide>
+              <SwiperSlide><img src={img2} /></SwiperSlide>
+              <SwiperSlide><img src={img2} /></SwiperSlide>
             </Swiper>
             <div className="custom-swiper-nav">
               <button className="custom-prev"><FaArrowLeft /></button>
@@ -81,7 +86,7 @@ const CountryPage = () => {
         </Col>
         <Col md={3} className="side-frame order-1 order-md-2">
           <div className="h-100 side-frame-col">
-            <div className="frame-placeholder">Frame</div>
+            <div className="frame-placeholder"><img src={img3}/></div>
           </div>
         </Col>
       </Row>
