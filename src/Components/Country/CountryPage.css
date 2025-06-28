@@ -125,7 +125,7 @@
     background-color: #f0f0f0;
     position: relative;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
 }
 

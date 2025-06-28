@@ -5,7 +5,7 @@ import { fetchCountriesByFilter } from "../../redux/slice/countrySlice";
 import { Container, Row, Col, Button, Card, Spinner } from "react-bootstrap";
 import { FaArrowLeft, FaArrowRight, FaBars } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -68,9 +68,13 @@ const CountryPage = () => {
           <div className="h-100 side-frame-col">
             <Swiper
               loop={true}
+              autoplay={{
+                delay: 2500,       
+                disableOnInteraction: false,
+              }}
               pagination={{ el: ".custom-pagination", clickable: true }}
               navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
-              modules={[Pagination, Navigation]}
+              modules={[Pagination, Navigation,Autoplay]}
               className="mySwiper"
             >
               <SwiperSlide><img src={img2} /></SwiperSlide>
@@ -86,7 +90,7 @@ const CountryPage = () => {
         </Col>
         <Col md={3} className="side-frame order-1 order-md-2">
           <div className="h-100 side-frame-col">
-            <div className="frame-placeholder"><img src={img3}/></div>
+            <div className="frame-placeholder">Frame</div>
           </div>
         </Col>
       </Row>
