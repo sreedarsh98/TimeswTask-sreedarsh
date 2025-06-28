@@ -1,10 +1,36 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { FaGoogle, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import "./Login.css";
 import loginimg from "../../assets/login.png";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const validatePassword = (password) => {
+    const regex =
+      /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    return regex.test(password);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!username.trim()) {
+      setErrorMsg("Username is required.");
+    } else if (!validatePassword(password)) {
+      setErrorMsg(
+        "Password must be at least 8 characters long and include 1 uppercase letter, 1 number, and 1 symbol."
+      );
+    } else {
+      setErrorMsg("");
+      navigate("/home");
+    }
+  };
+
   return (
     <Container
       fluid
@@ -12,18 +38,22 @@ const Login = () => {
     >
       <Row className="w-100 login-container">
         <Col md={6} className="sign-left p-2 p-md-5">
-          <div class="sign-left-container mx-auto mx-md-0">
+          <div className="sign-left-container mx-auto mx-md-0">
             <h4 className="head-sign">Sign In</h4>
             <p className="new-user fw-bold pt-2">
               New user? <span className="create-link ms-2">Create an account</span>
             </p>
 
-            <Form>
+            <Form onSubmit={handleSubmit}>
+              {errorMsg && <Alert variant="danger">{errorMsg}</Alert>}
+
               <Form.Group controlId="username" className="mb-3">
                 <Form.Control
                   type="text"
                   placeholder="Username or email"
                   className="input-box"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Form.Group>
 
@@ -32,6 +62,8 @@ const Login = () => {
                   type="password"
                   placeholder="Password"
                   className="input-box"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
 
@@ -41,7 +73,7 @@ const Login = () => {
                 className="my-4 fw-bold"
               />
 
-              <Button variant="dark" className="w-100 submit-btn mb-3">
+              <Button type="submit" variant="dark" className="w-100 submit-btn mb-3">
                 Sign In
               </Button>
 
@@ -68,13 +100,12 @@ const Login = () => {
           </div>
         </Col>
 
-        {/* Right Side (Image/Illustration) */}
         <Col
           md={6}
           className="d-none d-md-flex align-items-center justify-content-center p-2 p-md-5"
         >
           <img
-            src={loginimg} // replace with your image path
+            src={loginimg}
             alt="login-illustration"
             className="img-fluid login-img"
           />
