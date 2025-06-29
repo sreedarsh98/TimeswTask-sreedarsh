@@ -16,6 +16,7 @@ const Login = () => {
       /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     return regex.test(password);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -108,6 +109,7 @@ const Login = () => {
             src={loginimg}
             alt="login-illustration"
             className="img-fluid login-img"
+
           />
         </Col>
       </Row>
